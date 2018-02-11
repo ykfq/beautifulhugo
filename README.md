@@ -2,13 +2,29 @@
 
 ![Beautiful Hugo Theme Screenshot](https://github.com/halogenica/beautifulhugo/blob/master/images/screenshot.png)
 
+## Why fork from the original repo?
+
+The original repo is great but it doesn't suit for the Chinese language and China users because of some well known reasons.
+
+There are some additional features beside of the original Beautiful-hugo theme:
+
+- Support Chinese word count
+- Mobile devices adaptive
+- Use Baidu Analysis(百度统计)
+- Use prism for syntax highlighting
+- Use algolia for searching
+
 ## Installation
 
-    $ mkdir themes
-    $ cd themes
-    $ git clone https://github.com/halogenica/beautifulhugo.git beautifulhugo
+```bash
+$ mkdir themes
+$ cd themes
+$ git clone https://github.com/rootsongjc/beautifulhugo.git beautifulhugo
+```
 
 See [the Hugo documentation](http://gohugo.io/themes/installing/) for more information.
+
+---
 
 ## Extra Features
 
@@ -45,19 +61,19 @@ To add Google Analytics, simply sign up to [Google Analytics](http://www.google.
 
 If the source of your site is in a Git repo, the SHA corresponding to the commit the site is built from can be shown on the footer. To do so, two environment variables have to be set (`GIT_COMMIT_SHA` and `GIT_COMMIT_SHA_SHORT`) and parameter `commit` has to be defined in the config file:
 
-```
+```yaml
 [Params]
   commit = "https://github.com/<username>/<siterepo>/tree/"
 ```
-  
+
 This can be achieved by running the next command prior to calling Hugo:
 
-```
+```bash
   GIT_COMMIT_SHA=`git rev-parse --verify HEAD` GIT_COMMIT_SHA_SHORT=`git rev-parse --short HEAD`
 ```
-  
+
 See at [xor-gate/xor-gate.org](https://github.com/xor-gate/xor-gate.org) an example of how to add it to a continuous integration system.
-  
+
 ## About
 
 This is a port of the Jekyll theme [Beautiful Jekyll](http://deanattali.com/beautiful-jekyll/) by [Dean Attali](http://deanattali.com/aboutme#contact). It supports most of the features of the original theme.
