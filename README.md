@@ -13,6 +13,7 @@ There are some additional features beside of the original Beautiful-hugo theme:
 - Use Baidu Analysis(百度统计)
 - Use prism for syntax highlighting
 - Use algolia for searching
+- Table of  Content
 
 ## Installation
 
