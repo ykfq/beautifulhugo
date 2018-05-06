@@ -1,19 +1,14 @@
 {{ define "main" }}
-<div class="container" role="main">
+<div class="container" role="main" itemscope itemtype="http://schema.org/Article">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            {{ $baseurl := .Site.BaseURL }}
-            <div>
-                <section id="datecount">
-                    <h4 id="date"> {{ .Date.Format "Mon Jan 2, 2006" }}</h4>
-                </section>
-                <h5 id="wc">{{ .FuzzyWordCount }} Words|Read in about {{ .ReadingTime }} Min</h5>
-                <h5 id="tags">Tags: {{ range .Params.tags }}
-                    <a href="{{ $baseurl }}/tags/{{ . | urlize }}">{{ . }}</a> &nbsp;{{ end }}
-                </h5>
-
-            </div>
-            <article role="main" class="blog-post">
+            <!-- post metadata-->
+            {{ if isset .Params "postmeta" }}
+              {{ else }}
+            {{ partial "postmeta.html" . }}
+            {{ end }}
+            <article role="main" class="blog-post" itemprop="articleBody" id="content">
+                {{ partial "toc.html" . }}
                 {{ .Content }}
             </article>
 
@@ -28,6 +23,8 @@
                 </li>
                 {{ end }}
             </ul>
+            {{ if isset .Params "seealso" }}
+            {{ else }}
             <div>
                 {{ $related := .Site.RegularPages.Related . | first 5 }} {{ with $related }}
                 <h2>See Also</h2>
@@ -38,37 +35,20 @@
                 </ul>
                 {{ end }}
             </div>
-            {{ $baseurl := .Site.BaseURL }}
-            <div>
-                <section id="datecount">
-                    <h4 id="date"> {{ .Date.Format "Mon Jan 2, 2006" }}</h4>
-                </section>
-                <h5 id="wc">{{ .FuzzyWordCount }} Words|Read in about {{ .ReadingTime }} Min</h5>
-                <h5 id="tags">Tags: {{ range .Params.tags }}
-                    <a href="{{ $baseurl }}/tags/{{ . | urlize }}">{{ . }}</a> &nbsp;{{ end }}
-                </h5>
+            {{ end }}
+            <!-- post metadata-->
+            {{ if isset .Params "postmeta" }}
+              {{ else }}
+            {{ partial "postmeta.html" . }}
+            {{ end }}
             </div>
-            <!-- gitcomments -->
-            <aside id=comments>
-                <div>
-                    <h2> Comments </h2>
-                </div>
-                <div id="container"></div>
-                <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-                <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-                <script>
-                    var gitment = new Gitment({
-                        owner: 'rootsongjc', //github account
-                        repo: 'rootsongjc.github.io', // github repo
-                        oauth: {
-                            client_id: '93a0df08e0f93ff0c8a3',
-                            client_secret: '3bdbf0b42c525f78582600bd38cf7f722ee40541',
-                        },
-                    })
-                    gitment.render('container')
-                </script>
-            </aside>
-
+            <!-- gitments -->
+            {{ if isset .Site.Params "comments" }}
+                {{ if isset .Params "nocomment" }}
+                {{ else }}
+                 {{ partial "gitments.html" . }}
+                {{ end }}
+            {{ end }}
         </div>
     </div>
     </section>
