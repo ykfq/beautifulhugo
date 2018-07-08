@@ -54,6 +54,7 @@ description: "对文章的简要描述 SEO used for description"
 bigimg: [{src: "https://res.cloudinary.com/jimmysong/image/upload/images/2017052801.jpg", desc: "Beijing China|May 28,2017"}]
 nocomment: true
 postmeta: false
+notoc: ture
 ```
 
 **bigimg**：an array, you can specify multiple images in map lists.
@@ -61,6 +62,8 @@ postmeta: false
 **postmeta**：whether show the post meta data below a post title/subtitle
 
 **nocomment**: whether show the comment box
+
+**notoc**: enable the TOC for single blog
 
 ### 3. Preview and debug
 
