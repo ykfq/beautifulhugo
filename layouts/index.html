@@ -12,7 +12,7 @@
         {{ end }}
         {{ end }}
         <div class="posts-list">
-          {{ $pag := .Paginate (where .Data.Pages "Type" "post") }}
+          {{ $pag := .Paginate (where .Data.Pages "Type" "posts") }}
           {{ range $pag.Pages }}
             <article class="post-preview">
               <a href="{{ .Permalink }}">
@@ -58,6 +58,11 @@
               </li>
             {{ end }}
           </ul>
+        {{ end }}
+      </div>
+      <div align="center" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        {{ template "_internal/pagination.html" . }}
+        {{ range .Paginator.Pages }}
         {{ end }}
       </div>
     </div>
